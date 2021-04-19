@@ -1,20 +1,21 @@
 class Sources:
     """
     """
-    def __init__(self, id ,name, description, url):
+
+    def __init__(self, id, name, description, url):
         """
         """
-        self.id=id
-        self.name=name
-        self.description=description
-        self.url=url
+        self.id = id
+        self.name = name
+        self.description = description
+        self.url = url
 
 
 class Articles:
     """
     """
 
-    def __init__(self, title, author,description, url, url_to_image, published_at):
+    def __init__(self, title, author, description, url, url_to_image, published_at):
         """
         """
         self.title = title
@@ -22,4 +23,4 @@ class Articles:
         self.description = description
         self.url = url
         self.url_to_image = url_to_image
-        self.published_at = published_at 
+        self.published_at = published_at
