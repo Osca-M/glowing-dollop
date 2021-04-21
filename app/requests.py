@@ -1,21 +1,14 @@
-import json
-import urllib.request
-
 from newsapi import NewsApiClient
 
 from .models import Sources, Articles, Headlines
 
 key = None
-source_url = None
 newsapi = None
-everything_url = None
 
 
 def configure_request(app):
-    global key, source_url, newsapi, everything_url
+    global key, newsapi
     key = app.config['NEWS_API_KEY']
-    source_url = app.config['SOURCE_URL']
-    everything_url = app.config['EVERYTHING_URL']
     newsapi = NewsApiClient(api_key=key)
 
 
@@ -51,16 +44,14 @@ def articles(source_id):
     """
     function that gets all english news sources in a list
     """
-    url = everything_url.format(source_id, key)
-    with urllib.request.urlopen(url) as uri:
-        result = uri.read()
-        response = json.loads(result)
-
-        article_results = []
-
-        if response['articles']:
-            source_data_list = response['articles']
-            article_results = get_data(source_data_list)
+    # url = everything_url.format(source_id, key)
+    # with urllib.request.urlopen(url) as uri:
+    #     result = uri.read()
+    #     response = json.loads(result)
+    article_results = []
+    response = newsapi.get_everything(sources=source_id)
+    if response['articles']:
+        article_results = get_data(response['articles'])
     return article_results
 
 

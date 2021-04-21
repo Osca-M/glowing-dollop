@@ -31,8 +31,8 @@ class Headlines:
     """
 
     """
-    def __init__(self, title, url_to_image ,url):
+
+    def __init__(self, title, url_to_image, url):
         self.title = title
         self.url_to_image = url_to_image
         self.url = url
-

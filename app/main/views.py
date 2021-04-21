@@ -10,5 +10,4 @@ def homepage():
 
 @main.route('/articles/<id>')
 def all_articles(id):
-    article_source = articles(id)
-    return render_template("articles.html", article_source=article_source)
+    return render_template("articles.html", article_source=articles(id))
