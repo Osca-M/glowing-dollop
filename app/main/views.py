@@ -84,8 +84,7 @@ def new_review(id):
         review = form.review.data
 
         # Updated review instance
-        new_review = Review(movie_id=movie.id, movie_title=title, image_path=movie.poster, movie_review=review,
-                            user=current_user)
+        new_review = Review(movie_id=movie.id, title=title, image_path=movie.poster, review=review, user=current_user)
 
         # save review method
         new_review.save_review()
@@ -132,7 +131,7 @@ def update_pic(uname):
     if 'photo' in request.files:
         filename = photos.save(request.files['photo'])
         path = f'photos/{filename}'
-        user.profile_pic_path = filename
+        user.profile_pic_path = path
         db.session.commit()
 
         return redirect(url_for('main.profile', uname=uname))

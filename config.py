@@ -8,7 +8,7 @@ class Config:
     MOVIE_API_BASE_URL = 'https://api.themoviedb.org/3/movie/{}?api_key={}'
     MOVIE_API_KEY = os.environ.get('MOVIE_API_KEY')
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://michellewangechi:Rosemary70@localhost/watchlist'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:postgres@localhost/watchlist'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
 
@@ -19,7 +19,7 @@ class Config:
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SUBJECT_PREFIX = 'Watchlist'
-    SENDER_EMAIL = 'wangechik.michelle@gmail.com'
+    SENDER_EMAIL = 'ambitrafika2@gmail.com'
 
     # simple mde  configurations
     SIMPLEMDE_JS_IIFE = True
@@ -36,7 +36,7 @@ class ProdConfig(Config):
 
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://michellewangechi:password@localhost/watchlist_test'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:postgres@localhost/watchlist'
 
 
 class DevConfig(Config):
@@ -45,7 +45,7 @@ class DevConfig(Config):
     Args:
         Config :The parent configuration class with General configuration settings
     """
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://michellewangechi:password@localhost/watchlist'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:postgres@localhost/watchlist'
     DEBUG = True
 
 
