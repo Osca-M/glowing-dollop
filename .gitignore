@@ -3,3 +3,4 @@ virtual/
 instance/
 .idea
 .vscode
+.env
