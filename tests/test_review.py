@@ -9,7 +9,7 @@ class MovieTest(unittest.TestCase):
     """
 
     def setUp(self):
-        self.user_James = User(username='michellewangechi', password='Rosemary70', email='wangechik.michelle@gmail.com')
+        self.user_James = User(username='michellewangechi', password='potato', email='wangechik.michelle@gmail.com')
         self.new_review = Review(movie_id=12345, movie_title='Review for movies',
                                  image_path="https://image.tmdb.org/t/p/w500/jdjdjdjn",
                                  movie_review='This movie is the best thing since sliced bread', user=self.user_James)
