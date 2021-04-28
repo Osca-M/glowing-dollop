@@ -95,6 +95,7 @@ class Upvote(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    @classmethod
     def add_upvotes(cls, id):
         upvote_pitch = Upvote(user=current_user, pitch_id=id)
         upvote_pitch.save()
