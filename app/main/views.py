@@ -3,6 +3,9 @@ from . import main
 from flask_login import login_required, current_user
 from ..models import User, Pitch
 from .form import PitchForm, UpdateProfile, CommentForm
+from flask_login import login_required
+from ..models import User, Pitch, Comment, Upvote
+from .form import PitchForm, UpdateProfile, CommentForm, UpvoteForm
 from .. import db, photos
 
 
@@ -118,12 +121,17 @@ def dislike(id):
     return redirect(url_for('main.index', id=id))
 
 
-# @main.route('/new_comment/<int:pitch_id>')
-# @login_required
-# def comment(pitch_id):
-#     form = CommentForm()
-#     if form.validate_on_submit():
-#         comment = form.comment.data
-#         post_id = Pitch.query.get(pitch_id)
-#         user_id = current_user._get_current_object().id
-#         new_comment = ''
+@main.route('/comment/<int:pitch_id>', methods=['POST', 'GET'])
+@login_required
+def comment(pitch_id):
+    form = CommentForm()
+    pitch = Pitch.query.get(pitch_id)
+    all_comments = Comment.query.filter_by(pitch_id=pitch_id).all()
+    if form.validate_on_submit():
+        comment = form.comment.data
+        pitch_id = pitch_id
+        user_id = current_user._get_current_object().id
+        new_comment = Comment(comment=comment, user_id=user_id, pitch_id=pitch_id)
+        new_comment.save_c()
+        return redirect(url_for('.comment', pitch_id=pitch_id))
+    return render_template('comment.html', form=form, pitch=pitch, all_comments=all_comments)
