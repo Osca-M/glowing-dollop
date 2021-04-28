@@ -4,7 +4,7 @@ import os
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SECRET_KEY = os.urandom(32)
-    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI','postgresql+psycopg2://michellewangechi:Rosemary70@localhost/pitchapp')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI','postgresql+psycopg2://postgres:postgres@localhost/pitch-app')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
 
