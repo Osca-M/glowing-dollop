@@ -12,14 +12,11 @@ class User(db.Model, UserMixin):
     pitches = db.relationship('Pitch', backref='user', lazy='dynamic')
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    pitches = db.relationship('Pitch', backref='user', lazy='dynamic')
     comment = db.relationship('Comment', backref='user', lazy='dynamic')
 
     @classmethod
     def get_comments(cls, pitch_id):
-        comments = Comment.query.filter_by(pitch_id=pitch_id).all()
-
-        return comments
+        return Comment.query.filter_by(pitch_id=pitch_id).all()
 
     def save_u(self):
         db.session.add(self)
@@ -29,20 +26,19 @@ class User(db.Model, UserMixin):
         db.session.delete(self)
         db.session.commit()
 
-        @property
-        def set_password(self):
-            raise AttributeError('You cannot read the password attribute')
+    @property
+    def password(self):
+        raise AttributeError('You cannot read the password attribute')
 
-        @set_password.setter
-        def password(self, password):
-            self.secure_password = generate_password_hash(password)
+    @password.setter
+    def password(self, password):
+        self.secure_password = generate_password_hash(password)
 
-        def verify_password(self, password):
-            return check_password_hash(self.secure_password, password)
+    def verify_password(self, password):
+        return check_password_hash(self.secure_password, password)
 
-
-def __repr__(self):
-    return f'User {self.username}'
+    def __repr__(self):
+        return f'User {self.username}'
 
 
 class Pitch(db.Model):
@@ -58,21 +54,16 @@ class Pitch(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    @classmethod
+    def get_upvotes(cls, id):
+        return Upvote.query.filter_by(pitch_id=id).all()
 
-@classmethod
-def get_upvotes(cls, id):
-    upvote = Upvote.query.filter_by(pitch_id=id).all()
-    return upvote
+    @classmethod
+    def get_downvotes(cls, id):
+        return Downvote.query.filter_by(pitch_id=id).all()
 
-
-@classmethod
-def get_downvotes(cls,id):
-        downvote = Downvote.query.filter_by(pitch_id=id).all()
-        return downvote
-
-
-def __repr__(self):
-    return f'Pitch {self.post}'
+    def __repr__(self):
+        return f'Pitch {self.post}'
 
 
 class Comment(db.Model):
