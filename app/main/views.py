@@ -54,10 +54,8 @@ def comment(pitch_id):
 @main.route('/user/<name>')
 def profile(name):
     user = User.query.filter_by(username=name).first()
-
     if user is None:
         abort(404)
-
     return render_template("profile/profile.html", user=user)
 
 
@@ -69,7 +67,7 @@ def updateProfile(name):
         abort(404)
     if form.validate_on_submit():
         user.bio = form.bio.data
-        user.save()
+        user.save_u()
         return redirect(url_for('.profile', name=name))
     return render_template('profile/update.html', form=form)
 
