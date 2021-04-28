@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from ..models import User, Pitch
 from .form import PitchForm, UpdateProfile, CommentForm
 from flask_login import login_required
-from ..models import User, Pitch, Comment, Upvote
+from ..models import User, Pitch, Comment, Upvote,Downvote
 from .form import PitchForm, UpdateProfile, CommentForm, UpvoteForm
 from .. import db, photos
 
